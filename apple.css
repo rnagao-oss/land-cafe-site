@@ -1,0 +1,528 @@
+:root {
+  --black: #050505;
+  --ink: #1d1d1f;
+  --soft: #f5f5f7;
+  --panel: #ffffff;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --blue: #0071e3;
+  --blue-dark: #005bb8;
+  --sand: #e9e3d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--soft);
+  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  line-height: 1.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 max(22px, calc((100vw - 1180px) / 2));
+  background: rgba(245, 245, 247, 0.72);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.wordmark span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  color: var(--soft);
+  background: var(--ink);
+  font-weight: 800;
+}
+
+.wordmark strong {
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 30px;
+  color: rgba(29, 29, 31, 0.78);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.pill {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 16px;
+  color: white;
+  background: var(--blue);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pill:hover,
+.reserve button:hover {
+  background: var(--blue-dark);
+}
+
+.hero {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 118px 24px 64px;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 980px;
+  margin-bottom: 24px;
+  font-size: clamp(4.4rem, 10vw, 9.4rem);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 24px;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin-bottom: 16px;
+  font-size: clamp(2.2rem, 4vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.subhead {
+  width: min(760px, 100%);
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: clamp(1.16rem, 2vw, 1.55rem);
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.text-link {
+  color: var(--blue);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.text-link::after {
+  content: " >";
+}
+
+.product-shot {
+  margin: 0 auto 16px;
+  width: min(1380px, calc(100% - 32px));
+  height: min(72vw, 760px);
+  overflow: hidden;
+  background: #111;
+}
+
+.product-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statement,
+.flow,
+.plans,
+.location,
+.reserve {
+  padding: 122px max(24px, calc((100vw - 1180px) / 2));
+}
+
+.statement {
+  display: grid;
+  place-items: center;
+  min-height: 72vh;
+  text-align: center;
+  background: var(--soft);
+}
+
+.statement h2,
+.statement p:not(.kicker) {
+  width: min(920px, 100%);
+}
+
+.statement p:not(.kicker) {
+  color: var(--muted);
+  font-size: clamp(1.14rem, 2.2vw, 1.7rem);
+  font-weight: 600;
+}
+
+.feature-canvas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1380px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.feature {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(28px, 5vw, 64px);
+  background: var(--panel);
+}
+
+.feature.large {
+  min-height: 680px;
+}
+
+.feature.dark {
+  color: white;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.72)),
+    url("assets/hero-cowork.png") center / cover;
+}
+
+.feature.warm {
+  background: var(--sand);
+}
+
+.feature span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.feature.dark span,
+.feature.dark p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.feature p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.flow {
+  text-align: center;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 54px;
+  background: var(--line);
+}
+
+.timeline div {
+  min-height: 210px;
+  padding: 30px;
+  text-align: left;
+  background: var(--panel);
+}
+
+.timeline strong {
+  display: block;
+  margin-bottom: 52px;
+  font-size: 1.25rem;
+}
+
+.timeline p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.plans {
+  background: var(--black);
+  color: white;
+}
+
+.plans-head {
+  width: min(860px, 100%);
+  margin-bottom: 46px;
+}
+
+.plans .kicker {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.plan-grid article {
+  min-height: 300px;
+  padding: 34px;
+  color: var(--ink);
+  background: white;
+}
+
+.plan-grid article.selected {
+  color: white;
+  background: var(--blue);
+}
+
+.plan-grid p {
+  margin-bottom: 44px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.plan-grid .selected p,
+.plan-grid .selected span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.plan-grid h3 {
+  font-size: clamp(3.3rem, 6vw, 5.8rem);
+}
+
+.plan-grid span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.location {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+  gap: 46px;
+  align-items: stretch;
+  background: white;
+}
+
+.location p:not(.kicker) {
+  color: var(--muted);
+  font-size: 1.24rem;
+  font-weight: 700;
+}
+
+.location-card {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 34px;
+  color: white;
+  background: var(--ink);
+}
+
+.location-card strong {
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: 0.9;
+}
+
+.location-card span {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.reserve {
+  text-align: center;
+}
+
+.reserve h2 {
+  width: min(980px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reserve form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: min(640px, 100%);
+  margin: 34px auto 14px;
+}
+
+.reserve input,
+.reserve button {
+  height: 52px;
+  border-radius: 999px;
+  font: inherit;
+}
+
+.reserve input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 20px;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.reserve button {
+  padding: 0 24px;
+  color: white;
+  background: var(--blue);
+  border: 0;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.message {
+  min-height: 1.5em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px max(24px, calc((100vw - 1180px) / 2));
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .topbar nav {
+    display: none;
+  }
+
+  .hero {
+    min-height: 76vh;
+  }
+
+  .feature-canvas,
+  .timeline,
+  .plan-grid,
+  .location {
+    grid-template-columns: 1fr;
+  }
+
+  .feature,
+  .feature.large {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    height: 50px;
+    padding: 0 12px;
+  }
+
+  .wordmark strong {
+    max-width: 112px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pill {
+    padding: 0 12px;
+  }
+
+  .hero {
+    padding-top: 94px;
+    min-height: 72vh;
+  }
+
+  h1 {
+    font-size: clamp(3.4rem, 17vw, 5.1rem);
+  }
+
+  h2 {
+    font-size: clamp(2.75rem, 14vw, 4.5rem);
+  }
+
+  .subhead,
+  .text-link {
+    font-size: 1.05rem;
+  }
+
+  .product-shot {
+    width: 100%;
+    height: 76vh;
+  }
+
+  .statement,
+  .flow,
+  .plans,
+  .location,
+  .reserve {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .reserve form {
+    display: grid;
+  }
+
+  footer {
+    display: grid;
+  }
+}

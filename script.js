@@ -1,5 +1,33 @@
+const header = document.querySelector("[data-header]");
 const form = document.querySelector("[data-entry-form]");
 const message = document.querySelector("[data-form-message]");
+
+const updateHeader = () => {
+  header.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
+
+const revealTargets = document.querySelectorAll(
+  ".section-head, .feature, .space-row, .price-row, .steps li, .access-copy, .access-map, .concept-body, .faq-list"
+);
+
+revealTargets.forEach((el) => el.classList.add("reveal"));
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+revealTargets.forEach((el) => observer.observe(el));
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();

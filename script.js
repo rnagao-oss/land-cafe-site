@@ -10,7 +10,7 @@ updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
 const revealTargets = document.querySelectorAll(
-  ".section-head, .feature, .space-row, .price-row, .steps li, .access-copy, .access-map, .concept-body, .faq-list"
+  ".mission h2, .mission-lines, .label, .value-card, .space-card, .price-row, .steps li, .access-copy, .access-map, .faq-list"
 );
 
 revealTargets.forEach((el) => el.classList.add("reveal"));

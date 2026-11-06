@@ -24,7 +24,7 @@
   --fs-lead: clamp(1.125rem, 1.4vw, 1.25rem);
   --fs-h3: clamp(1.1875rem, 1.7vw, 1.375rem);
   --fs-h2: clamp(1.75rem, 3.6vw, 3rem);
-  --fs-hero: clamp(2.375rem, 6vw, 5rem);
+  --fs-hero: clamp(2.125rem, 5.4vw, 4.5rem);
   --fs-price: clamp(2.25rem, 4vw, 3.25rem);
 
   --container: 1200px;
@@ -325,6 +325,7 @@ main p + p { margin-top: 1.2em; }
 }
 
 .hero h1 .line:nth-child(2) span { animation-delay: 0.12s; }
+.hero h1 .line:nth-child(3) span { animation-delay: 0.24s; }
 
 @keyframes lineUp {
   to { transform: translateY(0); }
@@ -922,6 +923,7 @@ main p + p { margin-top: 1.2em; }
 
   .hero { min-height: 88svh; }
   .hero-inner { padding-top: 150px; }
+  .hero h1 { font-size: 1.75rem; }
   .page-hero { padding-top: 160px; }
 
   .hero-foot .sep { display: none; }

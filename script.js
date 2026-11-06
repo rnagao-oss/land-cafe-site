@@ -8,12 +8,30 @@ updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
 const revealTargets = document.querySelectorAll(".reveal");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const countUp = (el) => {
+  const target = Number(el.dataset.count);
+  if (!target || reduceMotion) return;
+  el.style.display = "inline-block";
+  el.style.minWidth = `${el.offsetWidth}px`;
+  const duration = 1100;
+  const start = performance.now();
+  const tick = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 4);
+    el.textContent = `¥${Math.round(target * eased).toLocaleString("ja-JP")}`;
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
+        entry.target.querySelectorAll("[data-count]").forEach(countUp);
         observer.unobserve(entry.target);
       }
     });

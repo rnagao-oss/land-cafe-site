@@ -1,6 +1,4 @@
 const header = document.querySelector("[data-header]");
-const form = document.querySelector("[data-entry-form]");
-const message = document.querySelector("[data-form-message]");
 
 const updateHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -9,11 +7,7 @@ const updateHeader = () => {
 updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
-const revealTargets = document.querySelectorAll(
-  ".mission h2, .mission-lines, .label, .value-card, .space-card, .price-row, .steps li, .access-copy, .access-map, .faq-list"
-);
-
-revealTargets.forEach((el) => el.classList.add("reveal"));
+const revealTargets = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -29,16 +23,21 @@ const observer = new IntersectionObserver(
 
 revealTargets.forEach((el) => observer.observe(el));
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(form);
-  const email = String(data.get("email") || "").trim();
+const form = document.querySelector("[data-entry-form]");
+const message = document.querySelector("[data-form-message]");
 
-  if (!email) {
-    message.textContent = "メールアドレスを入力してください。";
-    return;
-  }
+if (form) {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const email = String(data.get("email") || "").trim();
 
-  form.reset();
-  message.textContent = "登録ありがとうございます。オープン情報を準備でき次第お送りします。";
-});
+    if (!email) {
+      message.textContent = "メールアドレスを入力してください。";
+      return;
+    }
+
+    form.reset();
+    message.textContent = "登録ありがとうございます。オープン情報を準備でき次第お送りします。";
+  });
+}

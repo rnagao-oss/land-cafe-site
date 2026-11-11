@@ -717,13 +717,11 @@ main p + p { margin-top: 1.2em; }
 .footer-word {
   max-width: var(--container);
   margin: clamp(48px, 6vw, 80px) auto 0;
-  font-family: var(--latin);
-  font-size: clamp(48px, 9vw, 120px);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  line-height: 0;
 }
+.footer-word img { height: clamp(40px, 8vw, 104px); width: auto; }
+
+img.wordmark { display: inline; height: 0.78em; width: auto; vertical-align: -0.02em; margin-right: 0.12em; }
 
 .footer-bottom {
   max-width: var(--container);

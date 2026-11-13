@@ -53,11 +53,12 @@ body {
 
 :lang(ja) { line-break: strict; }
 :is(h1, h2, h3):lang(ja) { word-break: auto-phrase; text-wrap: balance; }
-main p:lang(ja) { word-break: auto-phrase; text-wrap: pretty; }
+main :is(p, li, dd, td, figcaption, address):lang(ja) { word-break: auto-phrase; text-wrap: pretty; }
+figcaption:lang(ja) { text-wrap: balance; }
 
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-h1, h2, h3, p, dl, dd, dt, ul, ol, address { margin: 0; }
+h1, h2, h3, p, dl, dd, dt, ul, ol, address, figure { margin: 0; }
 address { font-style: normal; }
 ::selection { background: rgba(29, 31, 26, 0.16); }
 
@@ -66,8 +67,8 @@ address { font-style: normal; }
 h2 {
   font-size: var(--fs-h2);
   font-weight: 700;
-  line-height: 1.55;
-  letter-spacing: 0.03em;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 }
 
 h3 {
@@ -115,7 +116,7 @@ h3 {
 main p { max-width: 36em; }
 main p + p { margin-top: 1.2em; }
 
-.sec-head { max-width: 40em; }
+.sec-head h2 { max-width: 20em; }
 .sec-head .label + h2 { margin-top: 16px; }
 .sec-head h2 + .lead, .sec-head h2 + p { margin-top: 28px; }
 
@@ -147,6 +148,9 @@ main p + p { margin-top: 1.2em; }
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1;
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
   background: var(--green);
   color: #fff;
   transition: background 0.2s ease;
@@ -406,7 +410,7 @@ main p + p { margin-top: 1.2em; }
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
   gap: clamp(40px, 6vw, 96px);
-  align-items: start;
+  align-items: center;
 }
 
 .about-copy .sec-head + p { margin-top: 28px; }
@@ -421,6 +425,7 @@ main p + p { margin-top: 1.2em; }
 .about-figure figcaption {
   margin-top: 12px;
   font-size: 13px;
+  line-height: 1.8;
   color: var(--text-2);
 }
 
@@ -513,18 +518,22 @@ main p + p { margin-top: 1.2em; }
 
 .space-card h3 { margin-top: 24px; }
 .space-card .fee {
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: var(--fs-small);
+  line-height: 1.5;
   color: var(--text-2);
   letter-spacing: 0.04em;
 }
 .space-card .fee b {
+  margin-left: 0.2em;
   font-family: var(--latin);
+  font-size: 1.375rem;
   font-weight: 600;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
 }
-.space-card p { margin-top: 12px; }
+.space-card .fee + p { margin-top: 14px; }
 
 @media (hover: hover) and (pointer: fine) {
   .space-card:hover .pic img { transform: scale(1.03); }
@@ -576,9 +585,13 @@ main p + p { margin-top: 1.2em; }
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 12px 32px;
+  align-items: flex-start;
+  gap: 16px 48px;
   margin-top: 28px;
 }
+
+.price-foot .note { flex: 1 1 20em; max-width: 34em; }
+.price-foot .textlink { flex: none; }
 
 /* ---------- pre-open (the single dark band) ---------- */
 
@@ -794,7 +807,7 @@ img.wordmark { display: inline; height: 0.78em; width: auto; vertical-align: -0.
 .faq-list summary {
   position: relative;
   padding: 22px 40px 22px 0;
-  font-size: 17px;
+  font-size: var(--fs-body);
   font-weight: 700;
   line-height: 1.7;
   cursor: pointer;
@@ -869,6 +882,8 @@ img.wordmark { display: inline; height: 0.78em; width: auto; vertical-align: -0.
 }
 
 .legal-body ul { padding-left: 1.4em; }
+.legal-body ul + p { margin-top: 1em; }
+.legal-body .textlink { display: inline; font-weight: 500; }
 .legal-body li + li { margin-top: 0.4em; }
 
 .legal-body table {
@@ -948,7 +963,12 @@ img.wordmark { display: inline; height: 0.78em; width: auto; vertical-align: -0.
   .nav-links a { font-size: 14px; }
   .header-cta { height: 36px; padding: 0 16px; font-size: 14px; }
 
+  body { line-height: 1.9; letter-spacing: 0.02em; }
+
   .hero { min-height: 88svh; }
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(20, 24, 18, 0.36) 0%, rgba(20, 24, 18, 0.16) 30%, rgba(20, 24, 18, 0.74) 100%);
+  }
   .hero-inner { padding-top: 150px; }
   .hero h1 { font-size: 1.625rem; }
   .page-hero { padding-top: 160px; }
@@ -957,7 +977,11 @@ img.wordmark { display: inline; height: 0.78em; width: auto; vertical-align: -0.
   .steps li { grid-template-columns: 1fr; gap: 8px; }
 
   .space-grid { grid-template-columns: 1fr; row-gap: 48px; }
-  .feature-grid { column-gap: 24px; row-gap: 40px; }
+  .feature-grid { grid-template-columns: 1fr; row-gap: 32px; }
+  .feature-grid li { display: grid; grid-template-columns: 28px 1fr; column-gap: 18px; }
+  .feature-grid .icon { grid-row: 1 / span 2; width: 28px; height: 28px; margin-top: 3px; }
+  .feature-grid h3 { margin-top: 0; }
+  .feature-grid p { grid-column: 2; margin-top: 6px; }
 
   .price-row { grid-template-columns: 1fr; gap: 12px; }
   .price-value { text-align: left; }
